@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using jQuery Selectors and Events</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      margin: 2rem;
+      background-color: #f4f7fb;
+      color: #1d2633;
+    }
+
+    main {
+      max-width: 760px;
+    }
+
+    button,
+    input {
+      font: inherit;
+      margin: 0.5rem 0;
+      padding: 0.65rem 0.85rem;
+    }
+
+    .panel {
+      border: 2px solid #9fb3c8;
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .highlight {
+      background-color: #ffe66d;
+      border-color: #3d5a80;
+      font-weight: bold;
+    }
+
+    .hovered {
+      color: white;
+      background-color: #2a9d8f;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Using jQuery Selectors and Events</h1>
+
+    <button id="changeTextButton">Click Me</button>
+    <p id="message">Click the button to change this paragraph.</p>
+
+    <p class="hoverBox panel">Hover over this paragraph to change its style.</p>
+
+    <button class="hideButton">Double-click to hide this button</button>
+
+    <label for="nameInput">Type your name:</label>
+    <input type="text" id="nameInput" placeholder="Start typing">
+    <p id="typingResult">Your typing will appear here.</p>
+
+    <h2>jQuery Selectors Used</h2>
+    <dl>
+      <dt><code>$("#changeTextButton")</code></dt>
+      <dd>I used this id selector to grab the Click Me button. When that button is clicked, jQuery changes the paragraph text and highlights it.</dd>
+
+      <dt><code>$(".hoverBox")</code></dt>
+      <dd>I used this class selector for the paragraph that says to hover over it. When the mouse goes over it, jQuery adds a style to change how the paragraph looks.</dd>
+
+      <dt><code>$(".hideButton")</code></dt>
+      <dd>I used this class selector for the double-click button. When it is double-clicked, jQuery hides that same button from the page.</dd>
+
+      <dt><code>$("#nameInput")</code></dt>
+      <dd>I used this id selector for the text box. The keypress event runs when a key is pressed, so the page shows a message while someone is typing.</dd>
+    </dl>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#changeTextButton").click(function() {
+        $("#message").text("The button was clicked, so this text changed.");
+        $("#message").addClass("highlight");
+      });
+
+      $(".hoverBox").mouseover(function() {
+        $(this).addClass("hovered");
+      });
+
+      $(".hideButton").dblclick(function() {
+        $(this).hide();
+      });
+
+      $("#nameInput").keypress(function() {
+        $("#typingResult").text("You are typing in the text box.");
+      });
+    });
+  </script>
+</body>
+</html>
